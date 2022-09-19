@@ -1,0 +1,314 @@
+/*CSS UNTUK USER (ADMIN)*/
+@font-face{
+    font-family: helmetneue;
+    src: url("../font/HelmetNeue-Regular.otf");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+html {
+    font-family: sans-serif;
+    background: url('background-makanan-admin.jpg');
+    min-height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+/*Mulai Bagian Navigation Bar*/
+nav {
+    /*atur flex untuk ".logo" dan <ul>*/
+    display: grid;
+    background-color: rgb(31, 31, 31);
+    /*misahin space item yang diflex ".logo" dan <ul>*/
+    grid-template-columns: 1fr 2fr 3fr;
+    /*padding: 20px 0; (cara agar tinggi nav bar teratur pakai cara bawah saja)*/
+    height: 70px;
+    justify-items: center;
+    align-items: center; /*atur posisi item vertikalnya*/
+}
+
+nav img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+nav .logo {
+    justify-self: start;
+    font-family: helmetneue;
+    /*atur space antar huruf*/
+    letter-spacing: 3px;
+    color: white;
+    font-size: 24px;
+}
+
+nav ul {
+    /*atur flex untuk <li> di <ul>*/
+    display: flex;
+    /*hilangkan titik dari tag <ul>*/
+    list-style: none;
+    width: 100%;
+    /*misahin space item yang diflex <li>*/
+    justify-content: space-evenly;
+    /*background-color: white; (untuk debug lebar ul)*/
+}
+nav ul li a {
+    /*untuk ubah warna tulisan tag <a> harus incar tulisannya*/
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    /*bikin ukuran font berapa kali dari aslinya*/
+    font-size: 1em; /*16px ambil dari parent-nya (font-size parent-nya masih tag html*/
+}
+/*cari kelas "navigasi" dan temukan child <li> yang kedua, untuk menandakan posisi halaman*/
+.navigasi li:nth-child(2) a {
+    color: white;
+    border-style: solid;
+    padding: 5px;
+    border-radius: 10px;
+}
+nav ul li a:hover {
+    color: white;
+}
+
+/*untuk hamburger menu*/
+.menu-toggle {
+    /*tidak muncul saat tampilan lebar*/
+    display: none;
+    /*atur arah susunan flex untuk <span>*/
+    flex-direction: column;
+    height: 20px;
+    /*background-color: tomato; (untuk debug)*/
+    justify-content: space-between;
+
+    position: relative;
+    /*posisikan selalu di depan*/
+    z-index: 9999;
+}
+.menu-toggle input {
+    position: absolute;
+    opacity: 0;
+    /*buat ukurannya jadi sesuai*/
+    width: 40px;
+    height: 28px;
+    /*geser agar posisinya pas*/
+    left: -6px;
+    top: -3px;
+    cursor: pointer;
+    /*saat animasi transfor, bagian hamburger menu akan bergerak ke depan, pastikan checkbox selalu di depan*/
+    z-index: 1;
+}
+.menu-toggle span {
+    /*ubah display default span yang inline menjadi block*/
+    display: block;
+    width: 28px;
+    height: 3px;
+    background-color: white;
+    border-radius: 3px;
+    /*transisi agar animasi tidak langsung*/
+    transition: all 0.5s;
+}
+/*untuk animasi hamburger menu*/
+/*cari span yang merupakan child kelas ".menu-toggle", child ke berapa?*/
+.menu-toggle span:nth-child(2) {
+    /*pindahkan poros transform ke atas kiri (sb x = 0, sb y = 0)*/
+    transform-origin: 0 0;
+}
+/*ketika input pada kelas ".menu-toggle" diceklis, cari css yang merupakan sibling dengan child ke 2(~)*/
+.menu-toggle input:checked ~ span:nth-child(2) {
+    /*background-color: red; (untuk debug)*/
+    /*"translate untuk geser sumbu x dan sumbu y supaya pas (-1px, -1px) itu udah dicoba - coba*/
+    transform: rotate(45deg) translate(-1px, -1px);
+    background-color: #ffd007;
+}
+.menu-toggle input:checked ~ span:nth-child(3) {
+    /*perkecil sampai hilang*/
+    transform: scale(0);
+}
+.menu-toggle span:nth-child(4) {
+    /*pindahkan poros transform ke bawah kiri (sb x = 0, sb y = 100)*/
+    transform-origin: 0 100%;
+}
+/*ketika input pada kelas ".menu-toggle" diceklis, cari css yang merupakan sibling dengan child ke 4(~)*/
+.menu-toggle input:checked ~ span:nth-child(4) {
+    /*rotasi ke atas (kebalikan)*/
+    /*"translate untuk geser sumbu x dan sumbu y supaya pas (-1px, 0) itu udah dicoba - coba*/
+    transform: rotate(-45deg) translate(-1px, 0);
+    background-color: #ffd007;
+}
+
+
+
+/*Mulai Bagian Isi*/
+.tombolLogout {
+    background-color: black;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    padding: 5px;
+
+    position: absolute;
+    top: 90px;
+    right: 20px;
+}
+.tombolLogout:hover {
+    color: rgb(255, 80, 80);
+}
+
+
+.penjelasan-user {
+    width: 80%;
+    margin: 2rem auto;
+    background: rgba(26, 73, 36, 0.7);
+    padding: 2rem;
+    color: white;
+    border-radius: 20px;
+}
+
+
+.info-user {
+    width: 80%;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 2rem;
+    color: white;
+    border-radius: 20px;
+}
+/*pilih h1 yang merupakan child ke-3 dari class "info-saldo"*/
+.info-user h1:nth-child(3){
+    margin-top: 1rem;
+}
+.info-user table td {
+    padding: 10px;
+    border: 1px solid white;
+    border-collapse: collapse; /*??????????????????*/
+}
+.buttonHapus {
+    padding: 5px 15px;
+    border-radius: 10px;
+    background-color: rgb(205, 0, 0);
+    box-shadow: 0px 0px 10px black;
+    text-decoration: none;
+    color: white;
+}
+.buttonHapus:hover {
+    background-color: rgb(100, 0, 0);
+}
+
+
+.info-user-mobile {
+    display: none;
+}
+
+
+/*RESPONSIVE BREAKPOINT*/
+/*Ukuran Mobile (ukuran max-nya 576px, artinya saat dibawah 576px maka lakukan)*/
+@media screen and (max-width: 700px) {
+    nav {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    nav .logo {
+        justify-self: center;
+        text-align: center;
+    }
+
+    nav ul {
+        background-color: black;
+        position: absolute;
+        /*buat supaya di kanan atas*/
+        right: 0;
+        top: 0;
+        width: 100%;
+        height: 80vh; /*artinya 80% halaman/viewport hegiht*/
+        /*ubah susunan jadi kolom, dan berposisi di tengah (horizontal), juga vertikal*/
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        /*posisikan di depan semua tampilan  kecuali hamburger menu <span> garis tiga*/
+        z-index: 1;
+        /*hilangkan saat baru muncul (dengan cara digeser sampai keluar) tapi akan membuat bablas (bisa scroll kanan)*/
+        transform: translateY(-100%);
+        transition: all 1s;
+        opacity: 0;
+    }
+    /*munculkan lagi dengan menambahkan class pada nav ul misal ".slide"*/
+    nav ul.slide {
+        transform: translateY(0);
+        opacity: 1;
+        border-radius: 20px;
+        box-shadow: 0 0 2px rgb(0, 0, 0, 0.3);
+    }
+
+    .menu-toggle {
+        /*buat 3 garis <span> jadi flex (muncul hanya saat mode mobile)*/
+    display: flex;
+    }   
+
+
+
+    /*Mulai Bagian Isi Mobile*/
+    .tombolLogout {
+        position: static;
+        display: block;
+        width : 60px;
+        text-align: center;
+        margin: 10px auto;
+    }
+
+
+    .penjelasan-user {
+        margin: 0.5rem auto;
+        text-align: center;
+    }
+    .penjelasan-user h1 {
+        font-size: 1rem;
+    }
+    .penjelasan-user p {
+        font-size: 0.8rem;
+    }
+
+    
+    .info-user {
+        display: none; /*apakah bisa pakai ini?*/
+    }
+
+
+    .info-user-mobile {
+        width: 80%;
+        margin: 1rem auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 2rem;
+        color: white;
+        border-radius: 20px;
+    }
+    .info-user-mobile table td {
+        padding: 10px;
+        border: 1px solid white;
+        border-collapse: collapse; 
+        font-size: 0.8rem;
+    }
+    .info-user-mobile table td:nth-child(1), .info-user-mobile table td:nth-child(3) {
+        text-align: center;
+    }
+    .info-user-mobile h1 {
+        font-size: 1rem;
+    }
+    .info-user-mobile h1:nth-child(3) {
+        margin-top: 1rem;
+    }
+    .list-info-mobile {
+        margin-left: 1rem;
+    }
+}

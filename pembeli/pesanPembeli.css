@@ -1,0 +1,450 @@
+/*CSS UNTUK PESAN MENU (PEMBELI)*/
+@font-face{
+    font-family: helmetneue;
+    src: url("../font/HelmetNeue-Regular.otf");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+html {
+    font-family: sans-serif;
+    background: url('../admin/background-makanan-admin.jpg');/*nanti ini diganti*/
+    /*background-color: #ffd007;*/
+    min-height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+/*Mulai Bagian Navigation Bar*/
+nav {
+    /*atur flex untuk ".logo" dan <ul>*/
+    display: grid;
+    background-color: rgb(31, 31, 31);
+    /*misahin space item yang diflex ".logo" dan <ul>*/
+    grid-template-columns: 1fr 2fr 3fr;
+    /*padding: 20px 0; (cara agar tinggi nav bar teratur pakai cara bawah saja)*/
+    height: 70px;
+    justify-items: center;
+    align-items: center; /*atur posisi item vertikalnya*/
+}
+
+nav img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+nav .logo {
+    justify-self: start;
+    font-family: helmetneue;
+    /*atur space antar huruf*/
+    letter-spacing: 3px;
+    color: white;
+    font-size: 24px;
+}
+
+nav ul {
+    /*atur flex untuk <li> di <ul>*/
+    display: flex;
+    /*hilangkan titik dari tag <ul>*/
+    list-style: none;
+    width: 100%;
+    /*misahin space item yang diflex <li>*/
+    justify-content: space-evenly;
+    /*background-color: white; (untuk debug lebar ul)*/
+}
+nav ul li a {
+    /*untuk ubah warna tulisan tag <a> harus incar tulisannya*/
+    color:rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    /*bikin ukuran font berapa kali dari aslinya*/
+    font-size: 1em;
+}
+/*cari kelas "navigasi" dan temukan child <li> yang kedua, untuk menandakan posisi halaman*/
+.navigasi li:nth-child(2) a {
+    color: white;
+    border-style: solid;
+    padding: 5px;
+    border-radius: 10px;
+}
+nav ul li a:hover {
+    color: white;
+}
+
+/*untuk hamburger menu*/
+.menu-toggle {
+    /*tidak muncul saat tampilan lebar*/
+    display: none;
+    /*atur arah susunan flex untuk <span>*/
+    flex-direction: column;
+    height: 20px;
+    /*background-color: tomato; (untuk debug)*/
+    justify-content: space-between;
+
+    position: relative;
+    /*posisikan selalu di depan*/
+    z-index: 2; /*diiubah jadi posisi kedua terdepan setelah modal box keranjang*/
+}
+.menu-toggle input {
+    position: absolute;
+    opacity: 0;
+    /*buat ukurannya jadi sesuai*/
+    width: 40px;
+    height: 28px;
+    /*geser agar posisinya pas*/
+    left: -6px;
+    top: -3px;
+    cursor: pointer;
+    /*saat animasi transfor, bagian hamburger menu akan bergerak ke depan, pastikan checkbox selalu di depan*/
+    z-index: 1;
+}
+.menu-toggle span {
+    /*ubah display default span yang inline menjadi block*/
+    display: block;
+    width: 28px;
+    height: 3px;
+    background-color: #ffffff;
+    border-radius: 3px;
+    /*transisi agar animasi tidak langsung*/
+    transition: all 0.5s;
+}
+/*untuk animasi hamburger menu*/
+/*cari span yang merupakan child kelas ".menu-toggle", child ke berapa?*/
+.menu-toggle span:nth-child(2) {
+    /*pindahkan poros transform ke atas kiri (sb x = 0, sb y = 0)*/
+    transform-origin: 0 0;
+}
+/*ketika input pada kelas ".menu-toggle" diceklis, cari css yang merupakan sibling dengan child ke 2(~)*/
+.menu-toggle input:checked ~ span:nth-child(2) {
+    /*background-color: red; (untuk debug)*/
+    /*"translate untuk geser sumbu x dan sumbu y supaya pas (-1px, -1px) itu udah dicoba - coba*/
+    transform: rotate(45deg) translate(-1px, -1px);
+    background-color: #ffd007;
+}
+.menu-toggle input:checked ~ span:nth-child(3) {
+    /*perkecil sampai hilang*/
+    transform: scale(0);
+}
+.menu-toggle span:nth-child(4) {
+    /*pindahkan poros transform ke bawah kiri (sb x = 0, sb y = 100)*/
+    transform-origin: 0 100%;
+}
+/*ketika input pada kelas ".menu-toggle" diceklis, cari css yang merupakan sibling dengan child ke 4(~)*/
+.menu-toggle input:checked ~ span:nth-child(4) {
+    /*rotasi ke atas (kebalikan)*/
+    /*"translate untuk geser sumbu x dan sumbu y supaya pas (-1px, 0) itu udah dicoba - coba*/
+    transform: rotate(-45deg) translate(-1px, 0);
+    background-color: #ffd007;
+}
+
+
+
+/*Mulai Bagian Isi*/
+.tombolLogout {
+    background-color: black;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    padding: 5px;
+
+    position: absolute;
+    top: 90px;
+    right: 20px;
+}
+.tombolLogout:hover {
+    background-color: black;
+    color: rgb(255, 80, 80);
+}
+
+
+body h2 {
+    margin-top: 20px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+
+.pilih {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+.pilih a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    background-color: black;
+    border-radius: 10px;
+}
+.pilih a:hover {
+    color: rgb(1, 206, 1);
+}
+
+
+body h3 {
+    margin-top: 20px;
+    margin-left: 3%;
+}
+
+
+.makanan {
+    border-radius: 10px;
+    text-align: center;
+    background-color: white;
+    float: left;
+    margin-left: 42px;
+    margin-top: 10px;
+    padding: 10px;
+    /*box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);*/
+    line-height: 28px;
+}
+    .makanan:hover {
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    }
+.makanan img{
+    width: 200px;
+    height: 150px;
+    border-radius: 10px;
+}
+.namaMenu {
+    font-family: 'Anton', sans-serif;
+}
+.makanan a {
+    padding: 5px 24px;
+    border-radius: 10px;
+    background-color: rgb(0, 151, 0);
+    text-decoration: none;
+    color: white;
+}
+    .makanan a:hover {
+        background-color: rgb(0, 60, 0);
+    }
+
+
+.bersihkan-float {
+    clear: left;
+    /*akan menghilangkan margin-left, hentikan float-left*/
+}
+
+
+.minuman {
+    border-radius: 10px;
+    text-align: center;
+    background-color: white;
+    float: left;
+    margin-left: 42px;
+    margin-top: 10px;
+    padding: 10px;
+    /*box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);*/
+    line-height: 28px;
+}
+    .minuman:hover {
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+    }
+.minuman img{
+    width: 200px;
+    height: 150px;
+    border-radius: 10px;
+}
+.minuman a {
+    padding: 5px 24px;
+    border-radius: 10px;
+    background-color: rgb(0, 151, 0);
+    text-decoration: none;
+    color: white;
+}
+    .minuman a:hover {
+        background-color: rgb(0, 60, 0);
+    }
+
+
+.space-pesanan {
+    height: 150px;
+}
+
+
+.kotak-pesanan {
+    width: 100%;
+    height: 60px;
+    background-color: #000000;
+    margin: auto;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    border-radius: 10px 10px 0 0;
+    box-shadow:  0 0 4px rgb(0, 0, 0, 0.8);
+}
+.kotak-pesanan table{
+    margin: 15px auto;
+}
+.tulisanTotal {
+    color: #fae04b;
+}
+/*Untuk Tombol Modal Box Keranjang*/
+.tombolModal {
+    display: block;
+    width: 120px;
+    height: 30px;
+    font-size: 14px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    font-family: 'Anton', sans-serif;
+    transition: 0.2s;
+}
+    .tombolModal:hover {
+        background-color: black;
+        color: lightskyblue;
+    }
+
+
+/*Untuk Modal Box Keranjang*/
+.keranjang {
+    display: none; /*kalo none itu hilang dan seolah tidak ada, bisa tertembut kalo klik, element ini id-nya "modalKeranjang"*/
+    position: fixed;
+    z-index: 3; /*posisi paling depan*/
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+.contentKeranjang {
+    background-color: lightskyblue;
+    margin: 15% auto;
+    width: 80%;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+.contentKeranjang table, .contentKeranjang p {
+    margin: 5px auto;
+}
+.closeKeranjang {
+    color: rgb(90, 90, 90);
+    float: right; /*dibuat posisinya berada di kanan*/
+    font-size: 28px;
+    font-weight: bold;
+}
+.closeKeranjang:hover, .closeKeranjang:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.tombolCheckout {
+    display: block;
+    background-color: #fae04b;
+    text-decoration: none;
+    color: black;
+    width: 100px;
+    padding: 10px;
+    margin: 0 auto;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgb(0, 0, 0, 0.6);   
+    transition: 0.5s;
+}
+.tombolCheckout:hover {
+    background-color: black;
+    color: yellow;
+}
+
+
+
+/*RESPONSIVE BREAKPOINT*/
+/*Ukuran Mobile (ukuran max-nya 576px, artinya saat dibawah 576px maka lakukan)*/
+@media screen and (max-width: 576px) {
+    nav {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    nav .logo {
+        justify-self: center;
+        text-align: center;
+    }
+
+    nav ul {
+        background-color: black;
+        position: absolute;
+        /*buat supaya di kanan atas*/
+        right: 0;
+        top: 0;
+        width: 100%;
+        height: 80vh; /*artinya 80% halaman/viewport hegiht*/
+        /*ubah susunan jadi kolom, dan berposisi di tengah (horizontal), juga vertikal*/
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        /*posisikan di depan semua tampilan  kecuali hamburger menu <span> garis tiga*/
+        z-index: 1;
+        /*hilangkan saat baru muncul (dengan cara digeser sampai keluar) tapi akan membuat bablas (bisa scroll kanan)*/
+        transform: translateY(-100%);
+        transition: all 1s;
+        opacity: 0;
+        margin-left: 0;
+    }
+    nav ul li{
+        margin-left: 0;
+    }
+    /*munculkan lagi dengan menambahkan class pada nav ul misal ".slide"*/
+    nav ul.slide {
+        transform: translateY(0);
+        opacity: 1;
+        border-radius: 20px;
+        box-shadow: 0 0 2px rgb(0, 0, 0, 0.3);
+    }
+
+    .menu-toggle {
+        /*buat 3 garis <span> jadi flex (muncul hanya saat mode mobile)*/
+        display: flex;
+    }
+
+
+
+    /*Mulai Bagian Isi Mobile*/
+    .tombolLogout {
+        position: static;
+        display: block;
+        width : 60px;
+        text-align: center;
+        margin: 10px auto;
+    }
+
+
+    .pilih a {
+        padding: 3px;
+        border-radius: 5px;
+    }
+
+
+    body h2 {
+        margin-top: 0;
+        margin-bottom: 5px;
+        font-size: 1.5rem;
+    }
+
+
+    .daftar-makanan {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+    .makanan {
+        margin-left: 0;
+    }
+
+
+    .daftar-minuman {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+    .minuman {
+        margin-left: 0;
+    }
+}

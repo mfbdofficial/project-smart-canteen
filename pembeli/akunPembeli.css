@@ -1,0 +1,431 @@
+/*CSS UNTUK AKUN (PEMBELI)*/
+@font-face{
+    font-family: helmetneue;
+    src: url("../font/HelmetNeue-Regular.otf");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+html {
+    font-family: sans-serif;
+    background: url('../admin/background-makanan-admin.jpg');/*nanti ini diganti*/
+    /*background-color: #ffd007;*/
+    min-height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+/*Mulai Bagian Navigation Bar*/
+nav {
+    /*atur flex untuk ".logo" dan <ul>*/
+    display: grid;
+    background-color: rgb(31, 31, 31);
+    /*misahin space item yang diflex ".logo" dan <ul>*/
+    grid-template-columns: 1fr 2fr 3fr;
+    /*padding: 20px 0; (cara agar tinggi nav bar teratur pakai cara bawah saja)*/
+    height: 70px;
+    justify-items: center;
+    align-items: center; /*atur posisi item vertikalnya*/
+}
+
+nav img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+nav .logo {
+    justify-self: start;
+    font-family: helmetneue;
+    /*atur space antar huruf*/
+    letter-spacing: 3px;
+    color: white;
+    font-size: 24px;
+}
+
+nav ul {
+    /*atur flex untuk <li> di <ul>*/
+    display: flex;
+    /*hilangkan titik dari tag <ul>*/
+    list-style: none;
+    width: 100%;
+    /*misahin space item yang diflex <li>*/
+    justify-content: space-evenly;
+    /*background-color: white; (untuk debug lebar ul)*/
+}
+nav ul li a {
+    /*untuk ubah warna tulisan tag <a> harus incar tulisannya*/
+    color:rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    /*bikin ukuran font berapa kali dari aslinya*/
+    font-size: 1em;
+}
+/*cari kelas "navigasi" dan temukan child <li> yang keempat, untuk menandakan posisi halaman*/
+.navigasi li:nth-child(4) a {
+    color: white;
+    border-style: solid;
+    padding: 5px;
+    border-radius: 10px;
+}
+nav ul li a:hover {
+    color: white;
+}
+
+/*untuk hamburger menu*/
+.menu-toggle {
+    /*tidak muncul saat tampilan lebar*/
+    display: none;
+    /*atur arah susunan flex untuk <span>*/
+    flex-direction: column;
+    height: 20px;
+    /*background-color: tomato; (untuk debug)*/
+    justify-content: space-between;
+
+    position: relative;
+    /*posisikan selalu di depan*/
+    z-index: 9999;
+}
+.menu-toggle input {
+    position: absolute;
+    opacity: 0;
+    /*buat ukurannya jadi sesuai*/
+    width: 40px;
+    height: 28px;
+    /*geser agar posisinya pas*/
+    left: -6px;
+    top: -3px;
+    cursor: pointer;
+    /*saat animasi transfor, bagian hamburger menu akan bergerak ke depan, pastikan checkbox selalu di depan*/
+    z-index: 1;
+}
+.menu-toggle span {
+    /*ubah display default span yang inline menjadi block*/
+    display: block;
+    width: 28px;
+    height: 3px;
+    background-color: white;
+    border-radius: 3px;
+    /*transisi agar animasi tidak langsung*/
+    transition: all 0.5s;
+}
+/*untuk animasi hamburger menu*/
+/*cari span yang merupakan child kelas ".menu-toggle", child ke berapa?*/
+.menu-toggle span:nth-child(2) {
+    /*pindahkan poros transform ke atas kiri (sb x = 0, sb y = 0)*/
+    transform-origin: 0 0;
+}
+/*ketika input pada kelas ".menu-toggle" diceklis, cari css yang merupakan sibling dengan child ke 2(~)*/
+.menu-toggle input:checked ~ span:nth-child(2) {
+    /*background-color: red; (untuk debug)*/
+    /*"translate untuk geser sumbu x dan sumbu y supaya pas (-1px, -1px) itu udah dicoba - coba*/
+    transform: rotate(45deg) translate(-1px, -1px);
+    background-color: #ffd007;
+}
+.menu-toggle input:checked ~ span:nth-child(3) {
+    /*perkecil sampai hilang*/
+    transform: scale(0);
+}
+.menu-toggle span:nth-child(4) {
+    /*pindahkan poros transform ke bawah kiri (sb x = 0, sb y = 100)*/
+    transform-origin: 0 100%;
+}
+/*ketika input pada kelas ".menu-toggle" diceklis, cari css yang merupakan sibling dengan child ke 4(~)*/
+.menu-toggle input:checked ~ span:nth-child(4) {
+    /*rotasi ke atas (kebalikan)*/
+    /*"translate untuk geser sumbu x dan sumbu y supaya pas (-1px, 0) itu udah dicoba - coba*/
+    transform: rotate(-45deg) translate(-1px, 0);
+    background-color: #ffd007;
+}
+
+
+
+/*Mulai Bagian Isi*/
+.tombolLogout {
+    background-color: black;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    padding: 5px;
+
+    position: absolute;
+    top: 90px;
+    right: 20px;
+}
+.tombolLogout:hover {
+    color: rgb(255, 80, 80);
+}
+
+
+.info-pribadi {
+    margin: 20px auto;
+    width: 80%;
+}
+.info-pribadi table {
+    margin: auto;
+}
+.info-pribadi table tr td {
+    padding-left: 10px;
+}
+.info-pribadi table tr td input {
+    width: 50px;
+}
+.info-pribadi table tr td img {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+}
+.edit-akun {
+    margin-top: 5px;
+    text-align: center;
+}
+.edit-akun a {
+    background-color: black;
+    text-decoration: none;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+}
+.edit-akun:hover a {
+    color: rgb(54, 196, 54);
+}
+
+
+.info-pribadi-mobile {
+    display: none;
+}
+
+
+.pencarian-riwayat {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 60%;
+    margin: 2rem auto;
+    justify-items: stretch;
+}
+.pencarian-tanggal {
+    margin: auto;
+}
+.pencarian-tanggal form {
+    text-align: center;
+}
+.pencarian-tanggal input {
+    height: 25px;
+}
+.pencarian-tanggal button {
+    background-color: #0a95ff;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+    .pencarian-tanggal button:hover {
+        background-color: #0362aa;
+    }
+.pencarian-teks {
+    margin: auto;
+}
+.pencarian-teks input {
+    width: 60%;
+    height: 28px;
+}
+.pencarian-teks button {
+    width: 38%;
+    background-color: #0a95ff;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+    .pencarian-teks button:hover {
+        background-color: #0362aa;
+    }
+
+
+.riwayat-pembeli {
+    width: 70%;
+    margin: 30px auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 2rem;
+    color: white;
+    border-radius: 1rem;
+}
+.riwayat-pembeli table td {
+    padding: 10px;
+    border: 1px solid white;
+    border-collapse: collapse; 
+}
+.instance-berhasil {
+    background-color: rgba(26, 73, 36, 0.7);
+}
+.instance-gagal {
+    background-color: rgba(53, 5, 5, 0.7);
+}
+
+
+.riwayat-pembeli-mobile {
+    display: none;
+}
+
+
+
+/*RESPONSIVE BREAKPOINT*/
+/*Ukuran Mobile (ukuran max-nya 576px, artinya saat dibawah 576px maka lakukan)*/
+@media screen and (max-width: 576px) {
+    nav {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    nav .logo {
+        justify-self: center;
+        text-align: center;
+    }
+
+    nav ul {
+        background-color: black;
+        position: absolute;
+        /*buat supaya di kanan atas*/
+        right: 0;
+        top: 0;
+        width: 100%;
+        height: 80vh; /*artinya 80% halaman/viewport hegiht*/
+        /*ubah susunan jadi kolom, dan berposisi di tengah (horizontal), juga vertikal*/
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        /*posisikan di depan semua tampilan  kecuali hamburger menu <span> garis tiga*/
+        z-index: 1;
+        /*hilangkan saat baru muncul (dengan cara digeser sampai keluar) tapi akan membuat bablas (bisa scroll kanan)*/
+        transform: translateY(-100%);
+        transition: all 1s;
+        opacity: 0;
+        margin-left: 0;
+    }
+    nav ul li{
+        margin-left: 0;
+    }
+    /*munculkan lagi dengan menambahkan class pada nav ul misal ".slide"*/
+    nav ul.slide {
+        transform: translateY(0);
+        opacity: 1;
+        border-radius: 20px;
+        box-shadow: 0 0 2px rgb(0, 0, 0, 0.3);
+    }
+
+    .menu-toggle {
+        /*buat 3 garis <span> jadi flex (muncul hanya saat mode mobile)*/
+        display: flex;
+    }
+
+
+    
+    /*Mulai Bagian Isi Mobile*/
+    .tombolLogout {
+        position: static;
+        display: block;
+        width : 60px;
+        text-align: center;
+        margin: 10px auto;
+    }
+    
+
+    .info-pribadi {
+        display: none;
+    }
+
+
+    .info-pribadi-mobile {
+        display: block;
+        margin: 1rem auto;
+        width: 80%;
+    }
+    .info-pribadi-mobile table {
+        margin: auto;
+        font-size: 0.8rem;
+    }
+    .list-profile-mobile {
+        margin-left: 1.5rem;
+    }
+    .info-pribadi-mobile table tr td img {
+        width: 8rem;
+        height: 8rem;
+        overflow: hidden;
+    }
+    .edit-akun-mobile {
+        margin-top: 5px;
+        text-align: center;
+    }
+    .edit-akun-mobile a {
+        background-color: black;
+        text-decoration: none;
+        color: white;
+        padding: 5px;
+        border-radius: 5px;
+    }
+    .edit-akun-mobile:hover a {
+        color: rgb(54, 196, 54);
+    }
+
+
+    .pencarian-riwayat {
+        grid-template-columns: 1fr;
+        width: 90%;
+        margin: 1rem auto;
+        margin-top: 2rem;
+    }
+    .pencarian-riwayat h3 {
+        font-size: 1rem;
+    }
+    .pencarian-teks form {
+        text-align: center;
+    }
+    .pencarian-teks input {
+        width: 50%;
+    }
+    .pencarian-teks button {
+        width: 35%;
+    }
+    
+
+    .riwayat-pembeli {
+        display: none;
+    }
+
+
+    .riwayat-pembeli-mobile {
+        width: 90%;
+        margin: 0.5rem auto;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 1rem;
+        color: white;
+        border-radius: 20px;
+    }
+    .riwayat-pembeli-mobile table td {
+        padding: 10px;
+        border: 1px solid white;
+        border-collapse: collapse; 
+        font-size: 0.8rem;
+    }
+    .riwayat-pembeli-mobile table td:nth-child(1), .riwayat-pembeli-mobile table td:nth-child(3) {
+        text-align: center;
+    }
+    .list-info-mobile {
+        margin-left: 1rem;
+    }
+    .instance-berhasil {
+        background-color: rgba(26, 73, 36, 0.7);
+    }
+    .instance-gagal {
+        background-color: rgba(53, 5, 5, 0.7);
+    }
+}

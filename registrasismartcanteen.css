@@ -1,0 +1,155 @@
+/*CSS UNTUK HALAMAN REGISTRASI*/
+
+@font-face{
+    font-family: ranchers;
+    src: url("font/Ranchers-Regular.ttf");
+}
+@font-face{
+    font-family: homkiges;
+    src: url("font/Homkiges-Demo.ttf");
+}
+
+html {
+    font-family: sans-serif;
+    background: url('background-makanan2.jpg');
+    min-height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.sambutan {
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 150px 150px 0px 0px;
+    width: 300px;
+    margin: auto;
+    margin-top: 40px;
+    padding-top: 10px;
+    padding-bottom: 50px;
+    text-align: center;
+    z-index: 0;
+}
+.sambutan p {
+    font-size: 20px;
+    font-family: ranchers;
+    color: white;
+    margin-top: 0;
+}
+.sambutan img {
+    width: 120px;
+    height: 120px;
+    position: relative;
+    border-radius: 50%;
+}
+
+
+.registrasi {
+    position: relative;
+    top: -55px;
+    background: white;
+    padding-bottom: 30px;
+    padding-top: 20px;
+    margin-left: 20%;
+    margin-right: 20%;
+    border-radius: 10px;
+    transition: 2s;
+    box-shadow: 5px 10px 10px rgba(29, 29, 28, 0.5);
+}
+
+.registrasi h1{
+    font-family: homkiges;
+    text-align: center;
+}
+
+.registrasi .form .form-atas {
+    font-size: 17px;
+    margin-left: 30%;
+}
+.registrasi .form .form-atas p{
+    margin-top: 2px;
+}    
+.error-registrasi {
+    margin: 2px auto;
+    text-align: center;
+}
+button {
+    display: block;
+    width: 40%;
+    height: 30px;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    font-size: 15px;
+    margin: auto;
+}
+
+.balik-login {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+
+
+/*RESPONSIVE BREAKPOINT*/
+/*Ukuran Tablet (ukuran max-nya 900px, artinya saat dibawah 900px maka lakukan)*/
+@media screen and (max-width: 900px) {
+    .registrasi {
+        padding-bottom: 20px;
+        padding-top: 20px;
+    }
+    .registrasi .form .form-atas{
+        font-size: 16px;
+        margin-left: 20%;
+    }
+}
+
+
+/*Ukuran Mobile (ukuran max-nya 576px, artinya saat dibawah 600px maka lakukan)*/
+@media screen and (max-width: 600px) {
+    .sambutan {
+        margin-top: 10px;
+        width: 230px;
+    }
+    .sambutan img {
+        width: 80px;
+        height: 80px;
+    }
+    .sambutan p {
+        font-size: 15px;
+        margin-bottom: 5px;
+    }
+
+
+    .registrasi {        
+        padding-bottom: 5px;
+        padding-top: 5px;
+        margin-left: 5%;
+        margin-right: 5%;
+        border-radius: 10px;
+        top: -45px;
+    }
+    
+    .registrasi h1{
+        text-align: center;
+        font-size: 17px;
+    }
+            
+    .registrasi .form .form-atas {
+        font-size: 12px;
+        margin-left: 20%;
+        margin-top: -10px;
+    }
+    .form td {
+        display: block;
+    }
+    .error-registrasi {
+        font-size: 12px;
+    }
+    button {
+        width: 80px;
+        height: 30px;
+        font-size: 11px;
+    }
+}    
